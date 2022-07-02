@@ -37,7 +37,7 @@ import glob
 import time
 
 
-class Main():
+class Main:
     """
     The main class.
     """
@@ -91,27 +91,23 @@ Mangyaring buksan ang laro. Huwag isarado ang window na ito.""",
         self.language = "English"  # Set default language to English.
         self.default_savefile_path = os.path.join(os.path.expanduser("~"), "Documents", "My Games", "NieR_Automata")
 
-    def languageSelect(self):
+    def languageSelect(self) -> None:
         """
         Select a language from self.messages.
-
-        :returns void:
         """
 
         print("Please select preferred language:\n")
         available_languages = list(self.messages.keys())
-        i = 1
         # Print available keys (languages) of self.messages.
-        for language in available_languages:
-            print("[{0}] {1}".format(i, language))
-            i += 1
+        for i, language in enumerate(available_languages):
+            print("[{0}] {1}".format(i + 1, language))
 
         print()
         while True:
             try:
                 # Get user's choice.
                 user_choice = int(input("Language: ")) - 1  # Because Python index starts with 0.
-                if user_choice < 0 or user_choice >= len(available_languages):
+                if 0 > user_choice > len(available_languages):
                     print("[ERROR] Language #{0} doesn't exist.".format(user_choice + 1))
                     continue
 
@@ -129,22 +125,22 @@ Mangyaring buksan ang laro. Huwag isarado ang window na ito.""",
 
         return
 
-    def getMessage(self, message_key: str):
+    def getMessage(self, message_key: str) -> str:
         """
         Return a message from self.messages.
 
-        :param str message_key: The key of the message to print.
+        :param message_key: The key of the message to print.
 
-        :returns str: The value of the key.
+        :returns: The value of the key.
         """
 
         return self.messages[self.language][message_key]
 
-    def main(self):
+    def main(self) -> int:
         """
         The main method of Main() class.
 
-        :returns int: Error code.
+        :returns: Error code.
                         0 = No error, all good.
                         1 = GameData.dat not found.
                         2 = CTRL+C pressed. (try/except block defined on program start.)
