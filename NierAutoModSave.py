@@ -130,8 +130,6 @@ Mangyaring buksan ang laro. Huwag isarado ang window na ito.""",
         Return a message from self.messages.
 
         :param message_key: The key of the message to print.
-
-        :returns: The value of the key.
         """
 
         return self.messages[self.language][message_key]
